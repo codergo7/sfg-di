@@ -1,9 +1,6 @@
 package com.go.springdi;
 
-import com.go.springdi.controller.ConstructorInjectedController;
-import com.go.springdi.controller.MyController;
-import com.go.springdi.controller.PropertyInjectedController;
-import com.go.springdi.controller.SetterInjectedController;
+import com.go.springdi.controller.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -14,11 +11,17 @@ public class SpringDiApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SpringDiApplication.class, args);
 
+		I18nController i18nController = ctx.getBean("i18nController", I18nController.class);
+
+		System.out.println("______Profile______");
+
+		System.out.println(i18nController.getGreeting());
+
 		MyController myController = ctx.getBean("myController", MyController.class);
 
-		String greeting = myController.sqyHello();
+		System.out.println("______Primary Bean______");
 
-		System.out.println(greeting);
+		System.out.println(myController.sayHello());
 
 		System.out.println("______Property______");
 
