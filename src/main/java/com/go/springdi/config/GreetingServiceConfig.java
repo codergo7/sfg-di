@@ -5,6 +5,10 @@ import com.go.springdi.repository.EnglishGreetingRepositoryImpl;
 import com.go.springdi.service.ConstructorGreetingServiceImpl;
 import com.go.springdi.service.I18nEnglishGreetingServiceImpl;
 import com.go.springdi.service.PrimaryGreetingServiceImpl;
+import comcom.go.springdi.pets.CatPetService;
+import comcom.go.springdi.pets.DogPetService;
+import comcom.go.springdi.pets.PetService;
+import comcom.go.springdi.pets.PetServiceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -41,5 +45,4 @@ public class GreetingServiceConfig {
     PrimaryGreetingServiceImpl primaryGreetingService() {
         return new PrimaryGreetingServiceImpl();
     }
-
 }

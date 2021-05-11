@@ -1,17 +1,25 @@
 package com.go.springdi.app;
 
 import com.go.springdi.controller.*;
+import comcom.go.springdi.pets.PetController;
+import comcom.go.springdi.pets.PetService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = {"com.go.springdi", "com.go.springdi.app"})
+@ComponentScan(basePackages = {"com.go.springdi", "comcom.go.springdi"})
 @SpringBootApplication
 public class SpringDiApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SpringDiApplication.class, args);
+
+		System.out.println("______Pet______");
+
+		PetController controller = ctx.getBean("petController", PetController.class);
+
+		System.out.println(controller.getPetType());
 
 		I18nController i18nController = ctx.getBean("i18nController", I18nController.class);
 
