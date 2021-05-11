@@ -1,10 +1,12 @@
-package com.go.springdi;
+package com.go.springdi.app;
 
 import com.go.springdi.controller.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
+@ComponentScan(basePackages = {"com.go.springdi", "com.go.springdi.app"})
 @SpringBootApplication
 public class SpringDiApplication {
 
