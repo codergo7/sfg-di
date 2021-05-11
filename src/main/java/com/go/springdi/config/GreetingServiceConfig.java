@@ -1,5 +1,7 @@
 package com.go.springdi.config;
 
+import com.go.springdi.repository.EnglishGreetingRepository;
+import com.go.springdi.repository.EnglishGreetingRepositoryImpl;
 import com.go.springdi.service.ConstructorGreetingServiceImpl;
 import com.go.springdi.service.I18nEnglishGreetingServiceImpl;
 import com.go.springdi.service.PrimaryGreetingServiceImpl;
@@ -20,13 +22,18 @@ public class GreetingServiceConfig {
     }
 
 
+    @Bean
+    EnglishGreetingRepository englishGreetingRepository(){
+        return new EnglishGreetingRepositoryImpl();
+    }
+
     /**
      * the method name is default
      */
     @Profile("EN")
     @Bean
-    I18nEnglishGreetingServiceImpl i18nEnglishGreetingService() {
-        return new I18nEnglishGreetingServiceImpl();
+    I18nEnglishGreetingServiceImpl i18nEnglishGreetingService(EnglishGreetingRepository englishGreetingRepository) {
+        return new I18nEnglishGreetingServiceImpl(englishGreetingRepository);
     }
 
     @Primary
