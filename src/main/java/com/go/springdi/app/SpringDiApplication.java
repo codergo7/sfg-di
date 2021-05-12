@@ -1,6 +1,8 @@
 package com.go.springdi.app;
 
 import com.go.springdi.controller.*;
+import com.go.springdi.service.PrototypeBean;
+import com.go.springdi.service.SingletonBean;
 import comcom.go.springdi.pets.PetController;
 import comcom.go.springdi.pets.PetService;
 import org.springframework.boot.SpringApplication;
@@ -47,6 +49,21 @@ public class SpringDiApplication {
 
 		ConstructorInjectedController constructorInjectedController = ctx.getBean("constructorInjectedController",ConstructorInjectedController.class);
 		System.out.println(constructorInjectedController.getGreeting());
+
+		System.out.println("______Bean Scopes______");
+		SingletonBean singletonBean = ctx.getBean(SingletonBean.class);
+		System.out.println(singletonBean.getMyScope());
+		SingletonBean singletonBean2 = ctx.getBean(SingletonBean.class);
+		System.out.println(singletonBean2.getMyScope());
+		System.out.println("Are Singleton beans same? :" + (singletonBean == singletonBean2));
+
+		PrototypeBean prototypeBean = ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBean.getMyScope());
+		PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBean2.getMyScope());
+		System.out.println("Are Prototype beans same? :" + (prototypeBean == prototypeBean2));
+
+
 	}
 
 }
