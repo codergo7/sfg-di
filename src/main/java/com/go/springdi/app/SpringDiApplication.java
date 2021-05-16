@@ -1,6 +1,7 @@
 package com.go.springdi.app;
 
 import com.go.springdi.controller.*;
+import com.go.springdi.datasource.FakeDataSource;
 import com.go.springdi.service.PrototypeBean;
 import com.go.springdi.service.SingletonBean;
 import comcom.go.springdi.pets.PetController;
@@ -62,6 +63,11 @@ public class SpringDiApplication {
 		PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
 		System.out.println(prototypeBean2.getMyScope());
 		System.out.println("Are Prototype beans same? :" + (prototypeBean == prototypeBean2));
+
+		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+		System.out.println(fakeDataSource.getUsername());
+		System.out.println(fakeDataSource.getPassword());
+		System.out.println(fakeDataSource.getJdbcurl());
 
 
 	}

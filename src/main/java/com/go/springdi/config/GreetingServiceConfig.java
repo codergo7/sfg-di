@@ -1,12 +1,14 @@
 package com.go.springdi.config;
 
+import com.go.springdi.datasource.FakeDataSource;
 import com.go.springdi.repository.EnglishGreetingRepository;
 import com.go.springdi.repository.EnglishGreetingRepositoryImpl;
-import com.go.springdi.service.ConstructorGreetingServiceImpl;
 import com.go.springdi.service.I18nEnglishGreetingServiceImpl;
 import com.go.springdi.service.PrimaryGreetingServiceImpl;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 
+//@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfdi-config.xml" )
 @Configuration
 public class GreetingServiceConfig {
@@ -18,6 +20,17 @@ public class GreetingServiceConfig {
   /*  ConstructorGreetingServiceImpl constructorGreetingService() {
         return new ConstructorGreetingServiceImpl();
     }*/
+
+    @Bean
+    FakeDataSource fakeDataSource(@Value("${go.username}") String username,
+                                  @Value("${go.password}") String password,
+                                  @Value("${go.jdbcurl}") String jdbcurl){
+        FakeDataSource fakeDataSource = new FakeDataSource();
+        fakeDataSource.setUsername(username);
+        fakeDataSource.setPassword(password);
+        fakeDataSource.setJdbcurl(jdbcurl);
+        return fakeDataSource;
+    }
 
     @Bean
     EnglishGreetingRepository englishGreetingRepository(){
