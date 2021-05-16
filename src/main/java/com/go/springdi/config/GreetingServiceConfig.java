@@ -5,10 +5,11 @@ import com.go.springdi.repository.EnglishGreetingRepository;
 import com.go.springdi.repository.EnglishGreetingRepositoryImpl;
 import com.go.springdi.service.I18nEnglishGreetingServiceImpl;
 import com.go.springdi.service.PrimaryGreetingServiceImpl;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 
 //@PropertySource("classpath:datasource.properties")
+@EnableConfigurationProperties(SfgConstructorConfig.class)
 @ImportResource("classpath:sfdi-config.xml" )
 @Configuration
 public class GreetingServiceConfig {
@@ -22,13 +23,15 @@ public class GreetingServiceConfig {
     }*/
 
     @Bean
-    FakeDataSource fakeDataSource(@Value("${go.username}") String username,
+    FakeDataSource fakeDataSource(/*@Value("${go.username}") String username,
                                   @Value("${go.password}") String password,
-                                  @Value("${go.jdbcurl}") String jdbcurl){
+                                  @Value("${go.jdbcurl}") String jdbcurl*/
+                                   /* SfgConfiguration sfgConfiguration*/
+                                    SfgConstructorConfig sfgConstructorConfig){
         FakeDataSource fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUsername(username);
-        fakeDataSource.setPassword(password);
-        fakeDataSource.setJdbcurl(jdbcurl);
+        fakeDataSource.setUsername(sfgConstructorConfig.getUsername());
+        fakeDataSource.setPassword(sfgConstructorConfig.getPassword());
+        fakeDataSource.setJdbcurl(sfgConstructorConfig.getJdbcurl());
         return fakeDataSource;
     }
 

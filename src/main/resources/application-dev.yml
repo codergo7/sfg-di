@@ -1,0 +1,4 @@
+go:
+  username: Yml-DEV-user
+  password: Yml-DEV-password
+  jdbcurl: Yml-DEV-dbUrl
